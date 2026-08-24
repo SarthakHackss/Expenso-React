@@ -1,0 +1,18 @@
+{
+  "appId": "com.expenso.app",
+  "appName": "EXPENSO",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    },
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#09090b",
+      "showSpinner": false
+    }
+  }
+}
