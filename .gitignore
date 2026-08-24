@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Production build output
+dist/
+dist-ssr/
+
+# Logs
+*.log
+logs/
+
+# Editor directories
+.vscode/
+.idea/
+.DS_Store
+
+# Android build outputs
+android/.gradle/
+android/app/build/
+android/build/
