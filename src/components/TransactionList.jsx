@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { CATEGORIES, getCategoryById } from '../constants/categories';
-import { Search, Trash2, RefreshCw, CheckCircle, Clock, Filter, AlertCircle } from 'lucide-react';
+import { Search, Trash2, RefreshCw, CheckCircle, Clock, Filter } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 export const TransactionList = ({
   expenses,
@@ -114,7 +115,7 @@ export const TransactionList = ({
             cursor: 'pointer',
             whiteSpace: 'nowrap',
             border: selectedCategory === 'all' ? '1px solid #a855f7' : '1px solid rgba(255,255,255,0.08)',
-            background: selectedCategory === 'all' ? 'rgba(168, 85, 247, 0.2)' : 'rgba(18, 17, 26, 0.6)',
+            background: selectedCategory === 'all' ? 'rgba(168, 85, 247, 0.2)' : 'rgba(255, 255, 255, 0.03)',
             color: selectedCategory === 'all' ? '#ffffff' : '#a1a1aa',
             transition: 'all 0.15s ease'
           }}
@@ -140,7 +141,7 @@ export const TransactionList = ({
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
                 border: isSelected ? `1px solid ${cat.color}` : '1px solid rgba(255,255,255,0.08)',
-                background: isSelected ? cat.bgColor : 'rgba(18, 17, 26, 0.6)',
+                background: isSelected ? cat.bgColor : 'rgba(255, 255, 255, 0.03)',
                 color: isSelected ? '#ffffff' : '#a1a1aa',
                 transition: 'all 0.15s ease'
               }}
@@ -159,9 +160,9 @@ export const TransactionList = ({
             textAlign: 'center',
             padding: '40px 20px',
             color: '#71717a',
-            background: 'rgba(9, 9, 11, 0.4)',
+            background: 'rgba(255, 255, 255, 0.03)',
             borderRadius: '16px',
-            border: '1px stroke rgba(255,255,255,0.05)'
+            border: '1px solid rgba(255,255,255,0.05)'
           }}
         >
           <Filter style={{ width: '32px', height: '32px', color: '#3f3f46', marginBottom: '8px' }} />
@@ -170,25 +171,25 @@ export const TransactionList = ({
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {filteredExpenses.map((expense) => {
+          {filteredExpenses.map((expense, idx) => {
             const category = getCategoryById(expense.category);
             const IconComp = category.icon;
             const isSyncingThis = syncingId === expense.id;
 
             return (
-              <div
-                key={expense.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '14px 16px',
-                  backgroundColor: 'rgba(18, 17, 26, 0.8)',
-                  border: '1px solid rgba(168, 85, 247, 0.12)',
-                  borderRadius: '16px',
-                  transition: 'all 0.2s ease'
-                }}
-              >
+              <Reveal key={expense.id} delay={Math.min(idx, 8) * 55}>
+                <div
+                  className="pressable"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '14px 16px',
+                    backgroundColor: 'var(--bg-card)',
+                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    borderRadius: '18px'
+                  }}
+                >
                 {/* Left: Category Icon & Details */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: 1, minWidth: 0 }}>
                   <div
@@ -296,6 +297,7 @@ export const TransactionList = ({
                   </div>
                 </div>
               </div>
+            </Reveal>
             );
           })}
         </div>

@@ -90,7 +90,7 @@ export const ExpenseForm = ({ onAddExpense, currencySymbol = '₹', hasScriptUrl
               onChange={(e) => setAmount(e.target.value)}
               style={{
                 width: '100%',
-                backgroundColor: 'rgba(9, 9, 11, 0.9)',
+                backgroundColor: '#0f0f11',
                 border: '1px solid rgba(168, 85, 247, 0.3)',
                 borderRadius: '16px',
                 padding: '16px 16px 16px 44px',
@@ -110,14 +110,15 @@ export const ExpenseForm = ({ onAddExpense, currencySymbol = '₹', hasScriptUrl
                 key={preset}
                 type="button"
                 onClick={() => handleQuickAdd(preset)}
+                className="pressable"
                 style={{
-                  background: 'rgba(168, 85, 247, 0.1)',
-                  border: '1px solid rgba(168, 85, 247, 0.2)',
-                  color: '#c084fc',
-                  padding: '4px 10px',
-                  borderRadius: '8px',
+                  background: 'var(--bg-elevated)',
+                  border: '1px solid var(--border-subtle)',
+                  color: '#f0abfc',
+                  padding: '5px 12px',
+                  borderRadius: '9999px',
                   fontSize: '0.75rem',
-                  fontWeight: 600,
+                  fontWeight: 700,
                   cursor: 'pointer',
                   transition: 'all 0.15s ease'
                 }}
@@ -157,14 +158,15 @@ export const ExpenseForm = ({ onAddExpense, currencySymbol = '₹', hasScriptUrl
                     borderRadius: '16px',
                     border: isSelected
                       ? `2px solid ${cat.color}`
-                      : '1px solid rgba(168, 85, 247, 0.12)',
+                      : '1px solid rgba(255, 255, 255, 0.06)',
                     background: isSelected
-                      ? `linear-gradient(135deg, ${cat.bgColor} 0%, rgba(24, 21, 36, 0.95) 100%)`
-                      : 'rgba(18, 17, 26, 0.6)',
-                    boxShadow: isSelected ? `0 0 15px ${cat.bgColor}` : 'none',
+                      ? `linear-gradient(135deg, ${cat.bgColor} 0%, rgba(22, 22, 24, 0.95) 100%)`
+                      : 'var(--bg-card)',
+                    boxShadow: isSelected ? `0 0 18px ${cat.bgColor}` : 'none',
                     cursor: 'pointer',
-                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-                    position: 'relative'
+                    transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    position: 'relative',
+                    transform: isSelected ? 'scale(1.05) translateY(-2px)' : 'scale(1)'
                   }}
                 >
                   {isSelected && (
@@ -238,7 +240,7 @@ export const ExpenseForm = ({ onAddExpense, currencySymbol = '₹', hasScriptUrl
                 onChange={(e) => setDate(e.target.value)}
                 style={{
                   width: '100%',
-                  backgroundColor: 'rgba(9, 9, 11, 0.8)',
+                  backgroundColor: '#0f0f11',
                   border: '1px solid rgba(168, 85, 247, 0.2)',
                   borderRadius: '12px',
                   padding: '12px 14px 12px 42px',
@@ -275,7 +277,7 @@ export const ExpenseForm = ({ onAddExpense, currencySymbol = '₹', hasScriptUrl
                 onChange={(e) => setRemark(e.target.value)}
                 style={{
                   width: '100%',
-                  backgroundColor: 'rgba(9, 9, 11, 0.8)',
+                  backgroundColor: '#0f0f11',
                   border: '1px solid rgba(168, 85, 247, 0.2)',
                   borderRadius: '12px',
                   padding: '12px 14px 12px 42px',

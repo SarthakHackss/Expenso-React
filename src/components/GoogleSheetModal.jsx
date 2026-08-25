@@ -91,7 +91,7 @@ export const GoogleSheetModal = ({
             </div>
             <div>
               <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#ffffff' }}>Google Sheets Sync Setup</h2>
-              <p style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>Connect EXPENSO to your Google Sheet</p>
+              <p style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>Connect Athanni to your Google Sheet</p>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ export const GoogleSheetModal = ({
           style={{
             display: 'flex',
             gap: '8px',
-            backgroundColor: 'rgba(9, 9, 11, 0.6)',
+            backgroundColor: '#0f0f11',
             padding: '4px',
             borderRadius: '12px',
             border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -227,7 +227,7 @@ export const GoogleSheetModal = ({
 
         {/* Dynamic Mode Instructions */}
         {activeMode === 'sheetdb' ? (
-          <div style={{ backgroundColor: 'rgba(18, 17, 26, 0.6)', borderRadius: '16px', padding: '16px' }}>
+          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', borderRadius: '16px', padding: '16px' }}>
             <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#c084fc', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <Zap style={{ width: '16px', height: '16px', color: '#eab308' }} /> Quick 3-Step SheetDB Setup (100% Android Compatible)
             </div>
@@ -262,7 +262,7 @@ export const GoogleSheetModal = ({
             {/* 1-Click Code Snippet Copy */}
             <div
               style={{
-                backgroundColor: 'rgba(9, 9, 11, 0.8)',
+                backgroundColor: '#0f0f11',
                 border: '1px solid rgba(168, 85, 247, 0.2)',
                 borderRadius: '16px',
                 padding: '16px',
@@ -299,7 +299,7 @@ export const GoogleSheetModal = ({
               </p>
             </div>
 
-            <div style={{ backgroundColor: 'rgba(18, 17, 26, 0.6)', borderRadius: '16px', padding: '16px' }}>
+            <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', borderRadius: '16px', padding: '16px' }}>
               <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#c084fc', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <HelpCircle style={{ width: '16px', height: '16px' }} /> Apps Script Guide
               </div>

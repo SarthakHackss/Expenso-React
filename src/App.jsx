@@ -8,6 +8,7 @@ import { EmiCreditCard } from './components/EmiCreditCard';
 import { GoogleSheetModal } from './components/GoogleSheetModal';
 import { BudgetModal } from './components/BudgetModal';
 import { Toast } from './components/Toast';
+import { Splash } from './components/Splash';
 import {
   getExpenses,
   addExpense,
@@ -34,10 +35,13 @@ import {
   batchSyncExpensesToGoogleSheets,
   deleteExpenseFromGoogleSheets
 } from './services/googleSheets';
-import { Download, Upload, Trash2, FileSpreadsheet, Sparkles, AlertCircle } from 'lucide-react';
+import { Download, Trash2, FileSpreadsheet } from 'lucide-react';
+
+export const TAB_ORDER = ['add', 'history', 'emi', 'analytics', 'settings'];
 
 export const App = () => {
   const [activeTab, setActiveTab] = useState('add');
+  const [tabDir, setTabDir] = useState('fwd');
   const [expenses, setExpenses] = useState([]);
   const [emis, setEmis] = useState([]);
   const [creditCards, setCreditCards] = useState([]);
@@ -66,6 +70,13 @@ export const App = () => {
 
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
+  };
+
+  // Direction-aware tab switching animation
+  const changeTab = (tab) => {
+    if (tab === activeTab) return;
+    setTabDir(TAB_ORDER.indexOf(tab) > TAB_ORDER.indexOf(activeTab) ? 'fwd' : 'back');
+    setActiveTab(tab);
   };
 
   // Add Expense Handler (with automatic cloud sync)
@@ -273,7 +284,7 @@ export const App = () => {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `EXPENSO_Expenses_${new Date().toISOString().substring(0, 10)}.csv`);
+    link.setAttribute('download', `ATHANNI_Expenses_${new Date().toISOString().substring(0, 10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -282,6 +293,13 @@ export const App = () => {
 
   return (
     <div className="app-container">
+      {/* Opening Animation */}
+      <Splash />
+
+      {/* Ambient floating glow orbs */}
+      <div className="ambient-orb" style={{ width: 260, height: 260, top: -70, right: -70, background: 'rgba(168, 85, 247, 0.14)' }} />
+      <div className="ambient-orb" style={{ width: 230, height: 230, bottom: '28%', left: -90, background: 'rgba(236, 72, 153, 0.1)', animationDelay: '-7s' }} />
+
       {/* App Header */}
       <Header
         hasScriptUrl={!!scriptUrl}
@@ -292,51 +310,47 @@ export const App = () => {
       />
 
       {/* Main View Area */}
-      <main style={{ flex: 1, padding: '20px 16px', paddingBottom: '30px' }}>
-        {/* Navigation Tabs Header Banner */}
+      <main style={{ flex: 1, padding: '8px 20px 30px' }}>
+        {/* Page Title Banner */}
         <div
           style={{
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'flex-end',
             justifyContent: 'space-between',
-            marginBottom: '20px',
-            background: 'rgba(18, 17, 26, 0.6)',
-            borderRadius: '16px',
-            padding: '12px 16px',
-            border: '1px solid rgba(168, 85, 247, 0.15)'
+            margin: '10px 0 22px'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Sparkles style={{ width: '16px', height: '16px', color: '#a855f7' }} />
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ffffff' }}>
-              {activeTab === 'add' && 'Record New Expense'}
-              {activeTab === 'history' && 'Transaction Log & Search'}
-              {activeTab === 'emi' && 'EMI & Credit Cards Tracker'}
-              {activeTab === 'analytics' && 'Spending Analytics'}
-              {activeTab === 'settings' && 'Google Sheets & Backups'}
-            </span>
-          </div>
+          <h2 className="page-title title-in" key={activeTab}>
+            {activeTab === 'add' && 'Add Expense'}
+            {activeTab === 'history' && 'Activity'}
+            {activeTab === 'emi' && 'EMI & Cards'}
+            {activeTab === 'analytics' && 'Analytics'}
+            {activeTab === 'settings' && 'Sheets'}
+          </h2>
 
           <button
             onClick={() => setIsBudgetOpen(true)}
             style={{
-              background: 'rgba(168, 85, 247, 0.1)',
-              border: '1px solid rgba(168, 85, 247, 0.25)',
-              color: '#c084fc',
-              padding: '4px 10px',
-              borderRadius: '8px',
+              background: 'var(--bg-elevated)',
+              border: '1px solid var(--border-subtle)',
+              color: '#f0abfc',
+              padding: '6px 12px',
+              borderRadius: '9999px',
               fontSize: '0.75rem',
-              fontWeight: 600,
-              cursor: 'pointer'
+              fontWeight: 700,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
             }}
           >
             Budget: {currency}{budget.toLocaleString()}
           </button>
         </div>
 
-        {/* Tab 1: Add Expense */}
-        {activeTab === 'add' && (
-          <div>
+        {/* Tab Content (direction-aware slide transition) */}
+        <div key={activeTab} className={tabDir === 'fwd' ? 'tab-enter-fwd' : 'tab-enter-back'}>
+          {/* Tab 1: Add Expense */}
+          {activeTab === 'add' && (
+            <div>
             <ExpenseForm
               onAddExpense={handleAddExpense}
               currencySymbol={currency}
@@ -412,9 +426,9 @@ export const App = () => {
             {/* Google Sheets Integration Card */}
             <div
               style={{
-                backgroundColor: 'rgba(24, 21, 36, 0.8)',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
-                borderRadius: '16px',
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: '22px',
                 padding: '20px',
                 marginBottom: '20px'
               }}
@@ -440,7 +454,7 @@ export const App = () => {
               </div>
 
               {scriptUrl && (
-                <div style={{ wordBreak: 'break-all', fontSize: '0.75rem', color: '#c084fc', background: 'rgba(0,0,0,0.4)', padding: '8px 12px', borderRadius: '8px' }}>
+                <div style={{ wordBreak: 'break-all', fontSize: '0.75rem', color: '#f0abfc', background: '#0f0f11', padding: '10px 12px', borderRadius: '10px' }}>
                   {scriptUrl}
                 </div>
               )}
@@ -460,10 +474,10 @@ export const App = () => {
                 onClick={handleClearAllLocalData}
                 style={{
                   width: '100%',
-                  background: 'rgba(239, 68, 68, 0.1)',
-                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  background: 'rgba(239, 68, 68, 0.08)',
+                  border: '1px solid rgba(239, 68, 68, 0.25)',
                   color: '#f87171',
-                  borderRadius: '14px',
+                  borderRadius: '9999px',
                   padding: '12px 18px',
                   fontSize: '0.9rem',
                   fontWeight: 600,
@@ -479,12 +493,13 @@ export const App = () => {
             </div>
           </div>
         )}
+        </div>
       </main>
 
       {/* Touch-Friendly Bottom Bar Navigation */}
       <Navigation
         activeTab={activeTab}
-        onChangeTab={setActiveTab}
+        onChangeTab={changeTab}
         unsyncedCount={unsyncedExpenses.length}
         activeEmiCount={emis.filter(e => e.paidMonths < e.totalMonths).length}
       />

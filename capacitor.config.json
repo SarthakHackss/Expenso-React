@@ -1,6 +1,6 @@
 {
   "appId": "com.expenso.app",
-  "appName": "EXPENSO",
+  "appName": "athanni",
   "webDir": "dist",
   "server": {
     "androidScheme": "https"
@@ -11,7 +11,7 @@
     },
     "SplashScreen": {
       "launchShowDuration": 2000,
-      "backgroundColor": "#09090b",
+      "backgroundColor": "#d904d9",
       "showSpinner": false
     }
   }

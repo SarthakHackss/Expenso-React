@@ -1,5 +1,5 @@
-import React from 'react';
-import { Wallet, RefreshCw, FileSpreadsheet, Sparkles } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { RefreshCw, FileSpreadsheet } from 'lucide-react';
 
 export const Header = ({
   hasScriptUrl,
@@ -8,59 +8,47 @@ export const Header = ({
   onOpenSettings,
   onManualSync
 }) => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <header
       style={{
-        padding: '16px 20px',
-        background: 'rgba(9, 9, 11, 0.95)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(168, 85, 247, 0.15)',
+        padding: scrolled ? '12px 20px 10px' : '20px 20px 8px',
+        background: scrolled ? 'rgba(10, 10, 12, 0.96)' : 'rgba(10, 10, 12, 0.85)',
+        backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
+        borderBottom: `1px solid ${scrolled ? 'rgba(255, 255, 255, 0.07)' : 'transparent'}`,
+        boxShadow: scrolled ? '0 8px 24px rgba(0, 0, 0, 0.45)' : '0 0 0 rgba(0, 0, 0, 0)',
         position: 'sticky',
         top: 0,
         zIndex: 50,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        transition: 'padding 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease'
       }}
     >
-      {/* Brand Logo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <div
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '12px',
-            background: 'linear-gradient(135deg, #a855f7 0%, #6d28d9 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 0 15px rgba(168, 85, 247, 0.5)'
-          }}
-        >
-          <Wallet style={{ width: '22px', height: '22px', color: '#ffffff' }} />
-        </div>
-        <div>
-          <h1
-            style={{
-              fontSize: '1.25rem',
-              fontWeight: 800,
-              letterSpacing: '-0.03em',
-              background: 'linear-gradient(135deg, #ffffff 0%, #c084fc 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px'
-            }}
-          >
-            EXPENSO
-            <Sparkles style={{ width: '14px', height: '14px', color: '#a855f7' }} />
-          </h1>
-          <p style={{ fontSize: '0.7rem', color: '#a1a1aa', marginTop: '-2px' }}>
-            Smart Expense Tracker
-          </p>
-        </div>
-      </div>
+      {/* Brand Wordmark */}
+      <h1
+        style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: scrolled ? '1.25rem' : '1.5rem',
+          fontWeight: 800,
+          letterSpacing: '-0.04em',
+          color: '#ffffff',
+          lineHeight: 1,
+          transition: 'font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1)'
+        }}
+      >
+        athanni<span style={{ color: 'rgba(255,255,255,0.45)' }}>.</span>
+      </h1>
 
       {/* Header Actions */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -70,13 +58,13 @@ export const Header = ({
             onClick={onManualSync}
             disabled={isSyncing}
             style={{
-              padding: '6px 12px',
+              padding: '7px 12px',
               borderRadius: '9999px',
-              border: unsyncedCount > 0 ? '1px solid rgba(245, 158, 11, 0.4)' : '1px solid rgba(16, 185, 129, 0.4)',
-              background: unsyncedCount > 0 ? 'rgba(245, 158, 11, 0.1)' : 'rgba(16, 185, 129, 0.1)',
+              border: 'none',
+              background: unsyncedCount > 0 ? 'rgba(245, 158, 11, 0.14)' : 'rgba(16, 185, 129, 0.14)',
               color: unsyncedCount > 0 ? '#fbbf24' : '#34d399',
               fontSize: '0.75rem',
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -99,13 +87,13 @@ export const Header = ({
             onClick={onOpenSettings}
             className="animate-pulse-glow"
             style={{
-              padding: '6px 12px',
+              padding: '7px 12px',
               borderRadius: '9999px',
-              border: '1px solid rgba(168, 85, 247, 0.5)',
-              background: 'rgba(168, 85, 247, 0.15)',
-              color: '#c084fc',
+              border: 'none',
+              background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(236, 72, 153, 0.25) 100%)',
+              color: '#f0abfc',
               fontSize: '0.75rem',
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -121,12 +109,12 @@ export const Header = ({
         <button
           onClick={onOpenSettings}
           style={{
-            width: '36px',
-            height: '36px',
-            borderRadius: '10px',
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(168, 85, 247, 0.2)',
-            color: '#c084fc',
+            width: '34px',
+            height: '34px',
+            borderRadius: '50%',
+            background: 'var(--bg-elevated)',
+            border: 'none',
+            color: '#a1a1aa',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
@@ -135,16 +123,9 @@ export const Header = ({
           }}
           title="Google Sheets Settings"
         >
-          <FileSpreadsheet style={{ width: '18px', height: '18px' }} />
+          <FileSpreadsheet style={{ width: '16px', height: '16px' }} />
         </button>
       </div>
-
-      <style>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </header>
   );
 };

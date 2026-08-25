@@ -54,7 +54,7 @@ export const BudgetModal = ({
                 width: '36px',
                 height: '36px',
                 borderRadius: '10px',
-                background: 'rgba(168, 85, 247, 0.15)',
+                background: 'rgba(255, 255, 255, 0.08)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
@@ -95,7 +95,7 @@ export const BudgetModal = ({
                     padding: '8px',
                     borderRadius: '10px',
                     border: currencyVal === sym ? '1px solid #a855f7' : '1px solid rgba(255,255,255,0.1)',
-                    background: currencyVal === sym ? 'rgba(168, 85, 247, 0.25)' : 'rgba(18, 17, 26, 0.6)',
+                    background: currencyVal === sym ? 'rgba(168, 85, 247, 0.25)' : 'rgba(255, 255, 255, 0.03)',
                     color: currencyVal === sym ? '#ffffff' : '#a1a1aa',
                     fontWeight: 700,
                     cursor: 'pointer'

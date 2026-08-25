@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Athanni monochrome logo">
+  <title>athanni — monochrome coin logo</title>
+  <defs>
+    <path id="marcTop" d="M 106 256 A 150 150 0 0 1 406 256"/>
+    <path id="marcBottom" d="M 106 256 A 150 150 0 0 0 406 256"/>
+    <path id="marcLeft" d="M 256 106 A 150 150 0 0 0 256 406"/>
+    <g id="mfleuron">
+      <path d="M 0 -14 C 5 -9 5 -4 0 1 C -5 -4 -5 -9 0 -14 Z"/>
+      <path d="M -1 -3 C -7 -5 -11 -9 -12 -15 C -6 -13 -2 -9 -1 -3 Z"/>
+      <path d="M 1 -3 C 7 -5 11 -9 12 -15 C 6 -13 2 -9 1 -3 Z"/>
+      <circle cx="0" cy="-19" r="2.2"/>
+      <circle cx="0" cy="5" r="1.8"/>
+    </g>
+  </defs>
+
+  <circle cx="256" cy="256" r="250" fill="#ffffff" stroke="#111111" stroke-width="5"/>
+  <circle cx="256" cy="256" r="243" fill="none" stroke="#111111" stroke-width="4.2" stroke-linecap="round" stroke-dasharray="0.1 25.37"/>
+
+  <g fill="#111111">
+    <g transform="rotate(0 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(22.5 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(45 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(67.5 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(90 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(112.5 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(135 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(157.5 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(180 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(202.5 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(225 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(247.5 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(270 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(292.5 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(315 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+    <g transform="rotate(337.5 256 256)"><use xlink:href="#mfleuron" href="#mfleuron" x="256" y="52"/></g>
+  </g>
+  <g fill="#111111">
+    <g transform="rotate(11.25 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(33.75 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(56.25 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(78.75 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(101.25 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(123.75 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(146.25 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(168.75 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(191.25 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(213.75 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(236.25 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(258.75 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(281.25 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(303.75 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(326.25 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+    <g transform="rotate(348.75 256 256)"><circle cx="256" cy="48" r="2.2"/></g>
+  </g>
+
+  <g font-family="Georgia, 'Times New Roman', serif" font-weight="bold" fill="#111111" text-anchor="middle">
+    <text font-size="44" letter-spacing="8">
+      <textPath xlink:href="#marcTop" href="#marcTop" startOffset="50%">ATHANNI</textPath>
+    </text>
+  </g>
+  <g font-family="'Nirmala UI','Mangal','Noto Sans Devanagari',sans-serif" font-weight="bold" fill="#111111" text-anchor="middle">
+    <text font-size="40">
+      <textPath xlink:href="#marcLeft" href="#marcLeft" startOffset="50%">अठन्नी</textPath>
+    </text>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#111111" text-anchor="middle">
+    <text font-size="26" letter-spacing="3">
+      <textPath xlink:href="#marcBottom" href="#marcBottom" startOffset="50%">•  ½ RUPEE  •</textPath>
+    </text>
+  </g>
+
+  <g text-anchor="middle" fill="#111111">
+    <text x="256" y="330" font-size="185" font-family="'Segoe UI','Nirmala UI','Segoe UI Symbol',Georgia,serif" font-weight="600">₹</text>
+    <text x="256" y="372" font-size="32" letter-spacing="6" font-family="Georgia, 'Times New Roman', serif" font-weight="bold">2026</text>
+  </g>
+</svg>

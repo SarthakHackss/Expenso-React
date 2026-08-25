@@ -15,6 +15,8 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { CATEGORIES, getCategoryById } from '../constants/categories';
+import { Reveal } from './Reveal';
+import { AnimatedBar } from './AnimatedBar';
 
 export const EmiCreditCard = ({
   emis,
@@ -126,7 +128,7 @@ export const EmiCreditCard = ({
       <div
         style={{
           display: 'flex',
-          background: 'rgba(18, 17, 26, 0.8)',
+          background: 'rgba(22, 22, 24, 0.9)',
           border: '1px solid rgba(168, 85, 247, 0.2)',
           borderRadius: '16px',
           padding: '4px',
@@ -393,12 +395,12 @@ export const EmiCreditCard = ({
 
           {/* EMI Cards List */}
           {emis.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px 20px', color: '#71717a', background: 'rgba(18, 17, 26, 0.4)', borderRadius: '16px' }}>
+            <div style={{ textAlign: 'center', padding: '40px 20px', color: '#71717a', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '16px' }}>
               No active EMI records. Click "Add New EMI" to start tracking!
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {emis.map((item) => {
+              {emis.map((item, idx) => {
                 const isCompleted = item.paidMonths >= item.totalMonths;
                 const remainingMonths = Math.max(0, item.totalMonths - item.paidMonths);
                 const remainingAmount = remainingMonths * item.monthlyAmount;
@@ -407,13 +409,13 @@ export const EmiCreditCard = ({
                 const IconComp = catObj.icon;
 
                 return (
+                  <Reveal key={item.id} delay={Math.min(idx, 6) * 70}>
                   <div
-                    key={item.id}
                     className="glass-card"
                     style={{
                       padding: '18px',
                       border: isCompleted ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(168, 85, 247, 0.2)',
-                      background: isCompleted ? 'rgba(16, 185, 129, 0.05)' : 'rgba(18, 17, 26, 0.8)'
+                      background: isCompleted ? 'rgba(16, 185, 129, 0.05)' : 'var(--bg-card)'
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
@@ -449,27 +451,22 @@ export const EmiCreditCard = ({
                       </div>
                     </div>
 
-                    {/* Progress Bar */}
-                    <div style={{ marginBottom: '12px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '4px' }}>
-                        <span style={{ color: '#a1a1aa' }}>
-                          {item.paidMonths} of {item.totalMonths} Installments Paid
-                        </span>
-                        <span style={{ fontWeight: 700, color: isCompleted ? '#34d399' : '#c084fc' }}>
-                          {progressPercent}% Complete
-                        </span>
-                      </div>
-                      <div style={{ height: '8px', backgroundColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '9999px', overflow: 'hidden' }}>
-                        <div
-                          style={{
-                            height: '100%',
-                            width: `${progressPercent}%`,
-                            background: isCompleted ? 'linear-gradient(90deg, #10b981, #34d399)' : 'linear-gradient(90deg, #a855f7, #c084fc)',
-                            borderRadius: '9999px'
-                          }}
+                      {/* Progress Bar */}
+                      <div style={{ marginBottom: '12px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '4px' }}>
+                          <span style={{ color: '#a1a1aa' }}>
+                            {item.paidMonths} of {item.totalMonths} Installments Paid
+                          </span>
+                          <span style={{ fontWeight: 700, color: isCompleted ? '#34d399' : '#f0abfc' }}>
+                            {progressPercent}% Complete
+                          </span>
+                        </div>
+                        <AnimatedBar
+                          percent={progressPercent}
+                          height={8}
+                          background={isCompleted ? 'linear-gradient(90deg, #10b981, #34d399)' : 'linear-gradient(90deg, #a855f7, #ec4899)'}
                         />
                       </div>
-                    </div>
 
                     {/* Bottom Info & Action Buttons */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '10px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
@@ -513,6 +510,7 @@ export const EmiCreditCard = ({
                       </div>
                     </div>
                   </div>
+                  </Reveal>
                 );
               })}
             </div>
@@ -677,26 +675,28 @@ export const EmiCreditCard = ({
 
           {/* Cards List */}
           {creditCards.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px 20px', color: '#71717a', background: 'rgba(18, 17, 26, 0.4)', borderRadius: '16px' }}>
+            <div style={{ textAlign: 'center', padding: '40px 20px', color: '#71717a', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '16px' }}>
               No credit cards added. Click "Add Credit Card" to start tracking limits & dues!
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
-              {creditCards.map((card) => {
+              {creditCards.map((card, idx) => {
                 const availableLimit = Math.max(0, card.totalLimit - card.usedAmount);
                 const utilization = card.totalLimit > 0 ? Math.round((card.usedAmount / card.totalLimit) * 100) : 0;
                 const isEditingThis = editingCardId === card.id;
 
                 return (
+                  <Reveal key={card.id} delay={Math.min(idx, 6) * 80}>
                   <div
-                    key={card.id}
+                    className="pressable"
                     style={{
-                      background: 'linear-gradient(135deg, rgba(24, 21, 36, 0.95) 0%, rgba(35, 23, 56, 0.9) 100%)',
-                      border: '1px solid rgba(168, 85, 247, 0.3)',
+                      background: 'linear-gradient(150deg, #201a2e 0%, #16121f 60%, #1d1226 100%)',
+                      border: '1px solid rgba(168, 85, 247, 0.35)',
                       borderRadius: '20px',
                       padding: '20px',
-                      boxShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(168, 85, 247, 0.15)',
-                      position: 'relative'
+                      boxShadow: '0 12px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)',
+                      position: 'relative',
+                      overflow: 'hidden'
                     }}
                   >
                     {/* Top Card Branding */}
@@ -746,23 +746,20 @@ export const EmiCreditCard = ({
                       </div>
                     </div>
 
-                    {/* Utilization Bar */}
-                    <div style={{ marginBottom: '14px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: '#a1a1aa', marginBottom: '4px' }}>
-                        <span>Total Limit: {currencySymbol}{card.totalLimit.toLocaleString('en-IN')}</span>
-                        <span style={{ color: utilization > 30 ? '#f87171' : '#34d399', fontWeight: 700 }}>{utilization}% Used</span>
-                      </div>
-                      <div style={{ height: '6px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '9999px', overflow: 'hidden' }}>
-                        <div
-                          style={{
-                            height: '100%',
-                            width: `${Math.min(utilization, 100)}%`,
-                            backgroundColor: utilization > 30 ? '#ef4444' : '#a855f7',
-                            borderRadius: '9999px'
-                          }}
+                      {/* Utilization Bar */}
+                      <div style={{ marginBottom: '14px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: '#a1a1aa', marginBottom: '4px' }}>
+                          <span>Total Limit: {currencySymbol}{card.totalLimit.toLocaleString('en-IN')}</span>
+                          <span style={{ color: utilization > 30 ? '#f87171' : '#34d399', fontWeight: 700 }}>{utilization}% Used</span>
+                        </div>
+                        <AnimatedBar
+                          percent={utilization}
+                          height={6}
+                          track="rgba(255,255,255,0.1)"
+                          background={utilization > 30 ? 'linear-gradient(90deg, #f59e0b, #ef4444)' : 'linear-gradient(90deg, #a855f7, #ec4899)'}
+                          delay={300 + idx * 90}
                         />
                       </div>
-                    </div>
 
                     {/* Dates Info */}
                     <div style={{ fontSize: '0.75rem', color: '#a1a1aa', display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
@@ -835,6 +832,7 @@ export const EmiCreditCard = ({
                       </button>
                     </div>
                   </div>
+                  </Reveal>
                 );
               })}
             </div>

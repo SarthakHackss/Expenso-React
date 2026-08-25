@@ -199,5 +199,7 @@ export const clearAllData = () => {
   localStorage.removeItem(KEYS.SCRIPT_URL);
   localStorage.removeItem(KEYS.EMIS);
   localStorage.removeItem(KEYS.CARDS);
+  localStorage.removeItem(KEYS.BUDGET);
+  localStorage.removeItem(KEYS.CURRENCY);
 };
 

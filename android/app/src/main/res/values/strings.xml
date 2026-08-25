@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">EXPENSO</string>
-    <string name="title_activity_main">EXPENSO</string>
+    <string name="app_name">athanni</string>
+    <string name="title_activity_main">athanni</string>
     <string name="package_name">com.expenso.app</string>
     <string name="custom_url_scheme">com.expenso.app</string>
 </resources>

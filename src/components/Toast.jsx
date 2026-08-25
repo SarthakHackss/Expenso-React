@@ -34,7 +34,7 @@ export const Toast = ({ message, type = 'success', onClose, duration = 3000 }) =
         zIndex: 1000,
         width: 'calc(100% - 32px)',
         maxWidth: '440px',
-        backgroundColor: '#12111a',
+        backgroundColor: '#161618',
         border: `1px solid ${borders[type] || borders.info}`,
         borderRadius: '16px',
         padding: '12px 16px',
@@ -45,7 +45,7 @@ export const Toast = ({ message, type = 'success', onClose, duration = 3000 }) =
         boxShadow: '0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(168, 85, 247, 0.2)',
         color: '#f4f4f5',
         fontSize: '0.9rem',
-        animation: 'fadeIn 0.25s ease-out'
+        animation: 'toastIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)'
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
